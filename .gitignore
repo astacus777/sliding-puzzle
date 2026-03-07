@@ -1,0 +1,17 @@
+# foldery build generowane przez CMake / CLion
+cmake-build-*/
+
+# inne foldery build
+build/
+
+# ustawienia IDE
+.idea/
+
+# pliki wykonywalne
+*.exe
+*.out
+*.o
+*.obj
+
+# pliki logów
+*.log
