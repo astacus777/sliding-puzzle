@@ -3,4 +3,6 @@ project(puzzle)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(puzzle main.cpp)
+add_executable(sliding_puzzle main.cpp
+        Board.cpp
+        Board.h)
