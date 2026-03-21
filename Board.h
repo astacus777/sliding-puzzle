@@ -20,6 +20,7 @@ public:
 
     void makeMove(char move);
     void displayMatrix() const;
+    void displayInfo();
     void shuffle();
     ~Board();
 };

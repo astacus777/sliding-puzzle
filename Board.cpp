@@ -22,7 +22,7 @@ void Board::makeMove(char move) {
                         matrix[i - size] = 0;
                         break;
                     } else {
-                        std::cout << " ruch niedozwolony" << std::endl;
+                        displayInfo();
                     }
                 }
             }
@@ -38,7 +38,7 @@ void Board::makeMove(char move) {
                         matrix[i + size] = 0;
                         break;
                     } else {
-                        std::cout << " ruch niedozwolony" << std::endl;
+                        displayInfo();
                     }
                 }
             }
@@ -53,7 +53,7 @@ void Board::makeMove(char move) {
                         matrix[i + 1] = 0;
                         break;
                     } else {
-                        std::cout << " ruch niedozwolony" << std::endl;
+                        displayInfo();
                     }
                 }
             }
@@ -68,7 +68,7 @@ void Board::makeMove(char move) {
                         matrix[i - 1] = 0;
                         break;
                     } else {
-                        std::cout << "ruch niedozwolony" << std::endl;
+                        displayInfo();
                     }
                 }
             }
@@ -78,7 +78,6 @@ void Board::makeMove(char move) {
             std::cout << "zly ruch";
     }
 }
-
 
 void Board::displayMatrix() const {
     for (int i = 0; i < size * size; i++) {
@@ -94,6 +93,10 @@ void Board::displayMatrix() const {
         if ((i + 1) % size == 0)
             std::cout << "\n";
     }
+}
+
+void Board::displayInfo() {
+    std::cout << "ruch niedozwolony" << std::endl;
 }
 void Board::shuffle() {
     std::mt19937 generator(std::random_device{}());
