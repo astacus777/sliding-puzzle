@@ -9,11 +9,13 @@
 int main() {
     int size{0};
     double gameTime{0};
+
     std::cout << "Podaj rozmiar macierzy: " << std::endl;
     std::cin >> size;
 
     Board board(size);
     Timer timer;
+
     board.shuffle();
     board.displayMatrix();
 
@@ -29,8 +31,8 @@ int main() {
     }
 
     timer.stop();
-    gameTime = timer.getSeconds();
-    std::cout << "czas podejscia: " << gameTime << std::endl;
+    gameTime = (int)timer.getSeconds();
+    std::cout << "czas podejscia: " << gameTime << " sekund" << std::endl;
 
     return 0;
 }

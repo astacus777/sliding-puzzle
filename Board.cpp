@@ -79,13 +79,14 @@ void Board::displayMatrix() const {
         if (matrix[i] == 0) {
             std::cout << " _  ";
         } else {
-            if (matrix[i] < 10)
+            if (matrix[i] < 10) {
                 std::cout << " "; // dodatkowa spacja dla 1-cyfrowych
-                std::cout << matrix[i] << "  "; // symulowanie matrixa
+            }
+            std::cout << matrix[i] << "  ";
         }
 
         if ((i + 1) % size == 0)
-            std::cout << "\n";
+            std::cout << "\n"; // symulowanie matrixa
     }
     std::cout << std::endl;
 }
