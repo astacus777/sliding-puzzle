@@ -2,11 +2,10 @@
 #include "Board.h"
 #include "Timer.h"
 
-// using namespace std;
-//
-// void displayMatrix(const vector<int>& matrix, int size);
+
 
 int main() {
+
     int size{0};
     double gameTime{0};
 
@@ -18,6 +17,7 @@ int main() {
 
     board.shuffle();
     board.displayMatrix();
+
 
 
     timer.start();

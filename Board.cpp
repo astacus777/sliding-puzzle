@@ -69,7 +69,7 @@ void Board::makeMove(char move) {
             }
             break;
         default:
-            std::cout << "zly ruch";
+            std::cout << "zly ruch" << std::endl;
     }
 }
 
@@ -96,6 +96,14 @@ void Board::displayInfo() {
 }
 
 void Board::shuffle() {
-    std::mt19937 generator(std::random_device{}());
-    std::shuffle(matrix.begin(), matrix.end(), generator);
+    std::string s="lpdg";
+    std::mt19937 gen(std::random_device{}());
+    std::uniform_int_distribution<> dist(0, 3);
+    for (int i=0; i<1000; i++) {
+
+        int x = dist(gen);
+        //std::cout<<s[x]<<std::endl;
+        makeMove(s[x]);
+    }
+
 }
