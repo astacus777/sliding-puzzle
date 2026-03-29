@@ -26,8 +26,6 @@ void Board::makeMove(char move) {
                     }
                 }
             }
-
-
             break;
         case 'g':
 
@@ -42,8 +40,6 @@ void Board::makeMove(char move) {
                     }
                 }
             }
-
-
             break;
         case 'l':
             for (int i = size * size - 1; i >= 0; i--) {
@@ -57,7 +53,6 @@ void Board::makeMove(char move) {
                     }
                 }
             }
-
             break;
 
         case 'p':
@@ -72,7 +67,6 @@ void Board::makeMove(char move) {
                     }
                 }
             }
-
             break;
         default:
             std::cout << "zly ruch";
@@ -80,29 +74,28 @@ void Board::makeMove(char move) {
 }
 
 void Board::displayMatrix() const {
+    std::cout << std::endl;
     for (int i = 0; i < size * size; i++) {
         if (matrix[i] == 0) {
             std::cout << " _  ";
         } else {
-            if (matrix[i] < 10)
+            if (matrix[i] < 10) {
                 std::cout << " "; // dodatkowa spacja dla 1-cyfrowych
-
-            std::cout << matrix[i] << "  "; // symulowanie matrixa
+            }
+            std::cout << matrix[i] << "  ";
         }
 
         if ((i + 1) % size == 0)
-            std::cout << "\n";
+            std::cout << "\n"; // symulowanie matrixa
     }
+    std::cout << std::endl;
 }
 
 void Board::displayInfo() {
     std::cout << "ruch niedozwolony" << std::endl;
 }
+
 void Board::shuffle() {
     std::mt19937 generator(std::random_device{}());
     std::shuffle(matrix.begin(), matrix.end(), generator);
-}
-
-Board::~Board() {
-
 }
