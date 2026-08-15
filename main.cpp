@@ -21,6 +21,7 @@ int main() {
     Board board(size);
     Timer timer;
 
+    //board.shuffle();
     board.setTestBoard();
     board.displayMatrix();
 
