@@ -71,7 +71,6 @@ bool Board::makeMove(char move) {
         default:
 
             return false;
-            //std::cout << "zly ruch";
     }
     return false;
 }
@@ -102,7 +101,7 @@ void Board::shuffle() {
     std::string s="lpdg";
     std::mt19937 gen(std::random_device{}());
     std::uniform_int_distribution<> dist(0, 3);
-    for (int i=0; i<1000; i++) {
+    for (int i=0; i<100; i++) {
 
         int x = dist(gen);
         //std::cout<<s[x]<<std::endl;

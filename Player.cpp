@@ -4,13 +4,17 @@
 
 #include "Player.h"
 
-#include <iostream>
-#include <ostream>
-
-void Player::setNickName(const std::string& nick) {
-    this -> nickName = nick;
-};
+Player::Player(const std::string& nick) {
+    nickName = nick;
+}
 
 void Player::roundResult(int score) {
     this -> totalPoints += score;
+}
+
+std::string Player::getNickName() const {
+    return this -> nickName;
+}
+int Player::getTotalPoints() const {
+    return this -> totalPoints;
 }
