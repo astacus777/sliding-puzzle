@@ -4,7 +4,10 @@
 #include "Timer.h"
 #include "Player.h"
 
-
+int calculateScore(int size, double gameTime, int numberOfMoves) {
+    int base = size * 1000;
+    return  base - gameTime - numberOfMoves;
+}
 
 int main() {
 
@@ -31,10 +34,10 @@ int main() {
 
     for (int i = 0; i < nuberOfRounds; i++) {
         std::cout << "Runda: " << i+1 << std::endl;
-        for (int i = 0; i < players.size(); i++) {
+        for (int j = 0; j < players.size(); j++) {
 
 
-            std::cout << "TERAZ GRA: " << players[i].getNickName() << std::endl;
+            std::cout << "TERAZ GRA: " << players[j].getNickName() << std::endl;
 
             int size{0};
             double gameTime{0};
@@ -89,7 +92,8 @@ int main() {
             std::cout << "czas podejscia: " << gameTime << " sekund" << std::endl;
             std::cout << "ilosc ruchow: " << numberOfMoves << std::endl;
 
-
+            int score = calculateScore(size, gameTime, numberOfMoves);
+            players[j].roundResult(score);
 
         }
     }
