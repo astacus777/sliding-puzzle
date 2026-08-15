@@ -12,7 +12,7 @@ Board::Board(int size) : size(size), matrix(size * size) {
     std::iota(matrix.begin(), matrix.end(), 0);
 }
 
-void Board::makeMove(char move) {
+bool Board::makeMove(char move) {
     switch (move) {
         case 'd':
             for (int i = 0; i < size * size; i++) {
@@ -20,9 +20,9 @@ void Board::makeMove(char move) {
                     if (i >= size) {
                         matrix[i] = matrix[i - size];
                         matrix[i - size] = 0;
-                        break;
+                        return true;
                     } else {
-                        displayInfo();
+                        return false;
                     }
                 }
             }
@@ -34,9 +34,9 @@ void Board::makeMove(char move) {
                     if (i < size * size - size) {
                         matrix[i] = matrix[i + size];
                         matrix[i + size] = 0;
-                        break;
+                        return true;
                     } else {
-                        displayInfo();
+                        return false;
                     }
                 }
             }
@@ -47,9 +47,9 @@ void Board::makeMove(char move) {
                     if (((i + 1) % size) != 0) {
                         matrix[i] = matrix[i + 1];
                         matrix[i + 1] = 0;
-                        break;
+                        return true;
                     } else {
-                        displayInfo();
+                        return false;
                     }
                 }
             }
@@ -61,16 +61,19 @@ void Board::makeMove(char move) {
                     if (i % size != 0) {
                         matrix[i] = matrix[i - 1];
                         matrix[i - 1] = 0;
-                        break;
+                        return true;
                     } else {
-                        displayInfo();
+                        return false;
                     }
                 }
             }
             break;
         default:
-            std::cout << "zly ruch" << std::endl;
+
+            return false;
+            //std::cout << "zly ruch";
     }
+    return false;
 }
 
 void Board::displayMatrix() const {
@@ -106,4 +109,25 @@ void Board::shuffle() {
         makeMove(s[x]);
     }
 
+}
+
+bool Board::isSolved() const {
+
+    for (int i = 0; i < size * size - 1; i++) {
+        if (matrix[i] != i + 1) {
+            return false;
+        }
+    }
+
+    return matrix[size * size - 1] == 0;
+}
+
+void Board::setTestBoard() {
+    for (int i = 0; i < size * size - 1; i++) {
+        matrix[i] = i + 1;
+    }
+
+    matrix[size * size - 1] = 0;
+
+    std::swap(matrix[size * size - 2], matrix[size * size - 1]);
 }

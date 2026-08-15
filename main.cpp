@@ -9,24 +9,40 @@ int main() {
     int size{0};
     double gameTime{0};
 
-    std::cout << "Podaj rozmiar macierzy: " << std::endl;
-    std::cin >> size;
+    while (size < 3) {
+        std::cout << "Podaj rozmiar macierzy (minimum 3): ";
+        std::cin >> size;
+
+        if (size < 3) {
+            std::cout << "Minimalny rozmiar planszy to 3x3." << std::endl;
+        }
+    }
 
     Board board(size);
     Timer timer;
 
-    board.shuffle();
+    board.setTestBoard();
     board.displayMatrix();
 
 
 
     timer.start();
 
-    for (int j = 0; j < 5; j++) {
+    while (!board.isSolved()) {
         char move;
+
         std::cout << "Twoj ruch (g, d, p, l): ";
         std::cin >> move;
-        board.makeMove(move);
+
+        if (move != 'g' && move != 'd' && move != 'p' && move != 'l') {
+            std::cout << "Nieprawidlowa komenda. Uzyj g, d, p lub l." << std::endl;
+            continue;
+        }
+
+        if (!board.makeMove(move)) {
+            std::cout << "Niedozwolony ruch." << std::endl;
+        }
+
         board.displayMatrix();
     }
 

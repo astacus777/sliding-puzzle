@@ -10,7 +10,7 @@
 class Player {
     private:
     std::string nickName;
-    int totalPoints;
+    int totalPoints{0};
     public:
     void setNickName(const std::string& nickName);
     void roundResult(int score);

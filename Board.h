@@ -18,10 +18,13 @@ public:
     // konstruktor
     Board(int size);
 
-    void makeMove(char move);
+    bool makeMove(char move);
     void displayMatrix() const;
     void displayInfo();
     void shuffle();
+    bool isSolved() const;
+
+    void setTestBoard();
 };
 
 
