@@ -5,6 +5,7 @@
 #include "Board.h"
 #include "Timer.h"
 #include <iostream>
+#include <limits>
 
 void Game::addPlayers() {
     char answer{};
@@ -13,7 +14,7 @@ void Game::addPlayers() {
         std::string nick;
 
         std::cout << "Podaj imie gracza: " << std::endl;
-        std::cin >> nick;
+        std::getline(std::cin >> std::ws, nick);
 
         players.emplace_back(nick);
 
@@ -24,8 +25,18 @@ void Game::addPlayers() {
 }
 
 void Game::setNumberOfRounds() {
-    std::cout << "Podaj ile rund chcecie zagrac: " << std::endl;
-    std::cin >> numberOfRounds;
+    while (true) {
+        std::cout << "Podaj ile rund chcecie zagrac: ";
+
+        if (std::cin >> numberOfRounds && numberOfRounds > 0) {
+            break;
+        }
+
+        std::cout << "Podaj dodatnia liczbe calkowita." << std::endl;
+
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
 }
 
 void Game::play() {
@@ -41,13 +52,17 @@ void Game::play() {
             int numberOfMoves{0};
 
 
-            while (size < 3) {
+            while (true) {
                 std::cout << "Podaj rozmiar macierzy (minimum 3): ";
-                std::cin >> size;
 
-                if (size < 3) {
-                    std::cout << "Minimalny rozmiar planszy to 3x3." << std::endl;
+                if (std::cin >> size && size >= 3) {
+                    break;
                 }
+
+                std::cout << "Podaj liczbe calkowita minimum 3." << std::endl;
+
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
 
             Board board(size);
