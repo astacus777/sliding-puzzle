@@ -41,7 +41,7 @@ void Game::setNumberOfRounds() {
 
 void Game::play() {
     for (int i = 0; i < numberOfRounds; i++) {
-        std::cout << "Runda: " << i+1 << std::endl;
+        std::cout << "\n===== RUNDA " << i + 1 << " =====\n";
         for (int j = 0; j < players.size(); j++) {
 
 
@@ -125,5 +125,20 @@ void Game::showResults() const {
         std::cout << players[i].getNickName() << std::endl;
         std::cout << players[i].getTotalPoints() << std::endl;
     }
+    int winnerIndex = 0;
+
+    for (int i = 1; i < players.size(); i++) {
+        if (players[i].getTotalPoints() >
+            players[winnerIndex].getTotalPoints()) {
+
+            winnerIndex = i;
+            }
+    }
+    std::cout << "Wygrywa: "
+          << players[winnerIndex].getNickName()
+          << " - "
+          << players[winnerIndex].getTotalPoints()
+          << " pkt!"
+          << std::endl;
 }
 
