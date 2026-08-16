@@ -9,4 +9,6 @@ add_executable(sliding_puzzle main.cpp
         Timer.cpp
         Timer.h
         Player.cpp
-        Player.h)
+        Player.h
+        Game.cpp
+        Game.h)
