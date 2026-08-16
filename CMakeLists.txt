@@ -1,9 +1,10 @@
-cmake_minimum_required(VERSION 4.1)
+cmake_minimum_required(VERSION 3.20)
 project(puzzle)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(sliding_puzzle main.cpp
+add_executable(sliding_puzzle
+        main.cpp
         Board.cpp
         Board.h
         Timer.cpp
@@ -11,4 +12,5 @@ add_executable(sliding_puzzle main.cpp
         Player.cpp
         Player.h
         Game.cpp
-        Game.h)
+        Game.h
+)

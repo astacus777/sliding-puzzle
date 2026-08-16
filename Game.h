@@ -1,24 +1,27 @@
 //
 // Created by Admin on 16/08/2026.
 //
-#include <vector>
-#include "Player.h"
+
 
 #ifndef PUZZLE_GAME_H
 #define PUZZLE_GAME_H
+
+#include <vector>
+#include "Player.h"
 
 
 class Game {
 private:
     std::vector<Player> players;
     int numberOfRounds{0};
+    void playSingleGame(Player& player);
+    static int calculateScore(int size, int gameTime, int numberOfMoves);
 
 public:
     void addPlayers();
     void setNumberOfRounds();
     void play();
-    int calculateScore(int size, double gameTime, int numberOfMoves);
-    void showResults();
+    void showResults() const;
 };
 
 
