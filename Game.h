@@ -8,6 +8,7 @@
 
 #include <vector>
 #include "Player.h"
+#include "ScoreSystem.h"
 
 
 class Game {
@@ -15,7 +16,6 @@ private:
     std::vector<Player> players;
     int numberOfRounds{0};
     void playSingleGame(Player& player);
-    static int calculateScore(int size, int gameTime, int numberOfMoves);
 
 public:
     void addPlayers();

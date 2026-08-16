@@ -111,13 +111,11 @@ void Game::playSingleGame(Player& player) {
     std::cout << "czas podejscia: " << gameTime << " sekund" << std::endl;
     std::cout << "ilosc ruchow: " << numberOfMoves << std::endl;
 
-    int score = calculateScore(size, gameTime, numberOfMoves);
-    player.roundResult(score);
-}
 
-int Game::calculateScore(int size, int gameTime, int numberOfMoves) {
-    int base = size * 1000;
-    return  base - gameTime - numberOfMoves;
+    StandardScore scoreSystem;
+
+    int score = scoreSystem.calculateScore(size, gameTime, numberOfMoves);
+    player.roundResult(score);
 }
 
 void Game::showResults() const {

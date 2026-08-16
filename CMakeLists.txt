@@ -13,4 +13,6 @@ add_executable(sliding_puzzle
         Player.h
         Game.cpp
         Game.h
+        ScoreSystem.cpp
+        ScoreSystem.h
 )
