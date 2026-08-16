@@ -15,3 +15,5 @@ build/
 
 # pliki logów
 *.log
+
+docs/

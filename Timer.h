@@ -7,12 +7,29 @@
 
 #include <chrono>
 
-
+/**
+ * @brief Klasa sluzaca do pomiaru czasu rozgrywki.
+ *
+ * Przechowuje czas rozpoczecia i zakonczenia pomiaru
+ * oraz umozliwia obliczenie czasu gry w sekundach.
+ */
 class Timer {
 public:
+
+    /**
+     * @brief Rozpoczyna pomiar czasu.
+     */
     void start();
+
+    /**
+     * @brief Konczy pomiar czasu.
+     */
     void stop();
 
+    /**
+     * @brief Pobiera czas trwania rozgrywki.
+     * @return Czas pomiedzy rozpoczeciem i zakonczeniem pomiaru w sekundach.
+     */
     double getSeconds() const;
 
 private:
@@ -20,5 +37,4 @@ private:
     std::chrono::time_point<std::chrono::high_resolution_clock> endTime;
 };
 
-
-#endif //PUZZLE_TIMER_H
+#endif // PUZZLE_TIMER_H
