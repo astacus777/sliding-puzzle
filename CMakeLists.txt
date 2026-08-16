@@ -3,6 +3,8 @@ project(puzzle)
 
 set(CMAKE_CXX_STANDARD 20)
 
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
+
 add_executable(sliding_puzzle
         main.cpp
         Board.cpp
@@ -15,4 +17,8 @@ add_executable(sliding_puzzle
         Game.h
         ScoreSystem.cpp
         ScoreSystem.h
+        MainWindow.cpp
+        MainWindow.h
 )
+
+target_link_libraries(sliding_puzzle PRIVATE Qt6::Widgets)

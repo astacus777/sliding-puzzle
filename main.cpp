@@ -1,18 +1,12 @@
-#include <iostream>
-#include <vector>
-#include "Board.h"
-#include "Timer.h"
-#include "Player.h"
-#include "Game.h"
+#include <QApplication>
+#include "MainWindow.h"
 
-int main() {
+int main(int argc, char *argv[]) {
 
-    Game game;
+    QApplication app(argc, argv);
 
-    game.addPlayers();
-    game.setNumberOfRounds();
-    game.play();
-    game.showResults();
+    MainWindow window;
+    window.show();
 
-    return 0;
+    return app.exec();
 }
