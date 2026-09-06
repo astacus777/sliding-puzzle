@@ -10,6 +10,7 @@
 void Game::addPlayers() {
     char answer{};
 
+    // Dodawanie graczy do rozgrywki
     do {
         std::string nick;
 
@@ -25,6 +26,7 @@ void Game::addPlayers() {
 }
 
 void Game::setNumberOfRounds() {
+    // Pobranie i sprawdzenie poprawnej liczby rund
     while (true) {
         std::cout << "Podaj ile rund chcecie zagrac: ";
 
@@ -40,15 +42,14 @@ void Game::setNumberOfRounds() {
 }
 
 void Game::play() {
+    // Rozgrywanie kolejnych rund
     for (int i = 0; i < numberOfRounds; i++) {
         std::cout << "\n===== RUNDA " << i + 1 << " =====\n";
+
+        // Kazdy gracz wykonuje swoja ture w danej rundzie
         for (int j = 0; j < players.size(); j++) {
-
-
             std::cout << "TERAZ GRA: " << players[j].getNickName() << std::endl;
             playSingleGame(players[j]);
-
-
         }
     }
 }
@@ -58,7 +59,7 @@ void Game::playSingleGame(Player& player) {
     int gameTime{0};
     int numberOfMoves{0};
 
-
+    // Pobranie poprawnego rozmiaru planszy
     while (true) {
         std::cout << "Podaj rozmiar macierzy (minimum 3): ";
 
@@ -75,26 +76,32 @@ void Game::playSingleGame(Player& player) {
     Board board(size);
     Timer timer;
 
-    //board.shuffle();
-    board.setTestBoard();
+    // Wersja finalna - losowa plansza
+    board.shuffle();
+
+    // Wyswietlenie planszy poczatkowej
     board.displayMatrix();
 
+    // Wersja testowa - ustawia plansze prawie rozwiazana,
+    // aby szybko sprawdzic zakonczenie rundy.
+    // board.setTestBoard();
 
-
+    // Rozpoczecie pomiaru czasu
     timer.start();
 
     while (!board.isSolved()) {
         char move;
 
-
         std::cout << "Twoj ruch (g, d, p, l): ";
         std::cin >> move;
 
+        // Sprawdzenie poprawnosci komendy
         if (move != 'g' && move != 'd' && move != 'p' && move != 'l') {
             std::cout << "Nieprawidlowa komenda. Uzyj g, d, p lub l." << std::endl;
             continue;
         }
 
+        // Licznik zwieksza sie tylko po poprawnym ruchu
         if (!board.makeMove(move)) {
             std::cout << "Niedozwolony ruch." << std::endl;
         } else {
@@ -106,12 +113,14 @@ void Game::playSingleGame(Player& player) {
         std::cout << "Twoj ruch numer: " << numberOfMoves << std::endl;
     }
 
+    // Zakonczenie pomiaru czasu po rozwiazaniu planszy
     timer.stop();
     gameTime = static_cast<int>(timer.getSeconds());
+
     std::cout << "czas podejscia: " << gameTime << " sekund" << std::endl;
     std::cout << "ilosc ruchow: " << numberOfMoves << std::endl;
 
-
+    // Obliczenie punktow za rozegrana ture
     StandardScore scoreSystem;
 
     int score = scoreSystem.calculateScore(size, gameTime, numberOfMoves);
@@ -119,10 +128,13 @@ void Game::playSingleGame(Player& player) {
 }
 
 void Game::showResults() const {
+    // Wyswietlenie wynikow wszystkich graczy
     for (int i = 0; i < players.size(); i++) {
         std::cout << players[i].getNickName() << std::endl;
         std::cout << players[i].getTotalPoints() << std::endl;
     }
+
+    // Wyszukanie gracza z najwieksza liczba punktow
     int winnerIndex = 0;
 
     for (int i = 1; i < players.size(); i++) {
@@ -130,13 +142,13 @@ void Game::showResults() const {
             players[winnerIndex].getTotalPoints()) {
 
             winnerIndex = i;
-            }
+        }
     }
-    std::cout << "Wygrywa: "
-          << players[winnerIndex].getNickName()
-          << " - "
-          << players[winnerIndex].getTotalPoints()
-          << " pkt!"
-          << std::endl;
-}
 
+    std::cout << "Wygrywa: "
+              << players[winnerIndex].getNickName()
+              << " - "
+              << players[winnerIndex].getTotalPoints()
+              << " pkt!"
+              << std::endl;
+}

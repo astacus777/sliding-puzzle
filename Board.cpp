@@ -9,10 +9,12 @@
 
 
 Board::Board(int size) : size(size), matrix(size * size) {
+    // Wypelnienie planszy kolejnymi wartosciami od 0 do n*n-1
     std::iota(matrix.begin(), matrix.end(), 0);
 }
 
 bool Board::makeMove(char move) {
+    // Wykonanie ruchu kafelka na puste pole
     switch (move) {
         case 'd':
             for (int i = 0; i < size * size; i++) {
@@ -27,9 +29,9 @@ bool Board::makeMove(char move) {
                 }
             }
             break;
-        case 'g':
 
-            for (int i = 0; i < (size * size); i++) {
+        case 'g':
+            for (int i = 0; i < size * size; i++) {
                 if (matrix[i] == 0) {
                     if (i < size * size - size) {
                         matrix[i] = matrix[i + size];
@@ -41,6 +43,7 @@ bool Board::makeMove(char move) {
                 }
             }
             break;
+
         case 'l':
             for (int i = size * size - 1; i >= 0; i--) {
                 if (matrix[i] == 0) {
@@ -56,7 +59,7 @@ bool Board::makeMove(char move) {
             break;
 
         case 'p':
-            for (int i = 0; i < (size * size); i++) {
+            for (int i = 0; i < size * size; i++) {
                 if (matrix[i] == 0) {
                     if (i % size != 0) {
                         matrix[i] = matrix[i - 1];
@@ -68,28 +71,34 @@ bool Board::makeMove(char move) {
                 }
             }
             break;
-        default:
 
+        default:
             return false;
     }
+
     return false;
 }
 
 void Board::displayMatrix() const {
+    // Wyswietlenie aktualnego stanu planszy
     std::cout << std::endl;
+
     for (int i = 0; i < size * size; i++) {
         if (matrix[i] == 0) {
             std::cout << " _  ";
         } else {
             if (matrix[i] < 10) {
-                std::cout << " "; // dodatkowa spacja dla 1-cyfrowych
+                std::cout << " "; // dodatkowa spacja dla liczb jednocyfrowych
             }
+
             std::cout << matrix[i] << "  ";
         }
 
-        if ((i + 1) % size == 0)
-            std::cout << "\n"; // symulowanie matrixa
+        if ((i + 1) % size == 0) {
+            std::cout << "\n"; // przejscie do kolejnego wiersza planszy
+        }
     }
+
     std::cout << std::endl;
 }
 
@@ -98,30 +107,34 @@ void Board::displayInfo() {
 }
 
 void Board::shuffle() {
-    std::string s="lpdg";
+    // Losowanie ruchow w celu wymieszania planszy
+    std::string s = "lpdg";
+
     std::mt19937 gen(std::random_device{}());
     std::uniform_int_distribution<> dist(0, 3);
-    for (int i=0; i<100; i++) {
 
+    // Plansza jest mieszana przez wykonanie 100 losowych prob ruchu
+    for (int i = 0; i < 100; i++) {
         int x = dist(gen);
-        //std::cout<<s[x]<<std::endl;
         makeMove(s[x]);
     }
-
 }
 
 bool Board::isSolved() const {
-
+    // Sprawdzenie poprawnej kolejnosci wszystkich kafelkow
     for (int i = 0; i < size * size - 1; i++) {
         if (matrix[i] != i + 1) {
             return false;
         }
     }
 
+    // Puste pole powinno znajdowac sie na koncu planszy
     return matrix[size * size - 1] == 0;
 }
 
 void Board::setTestBoard() {
+    // Funkcja pomocnicza do testow:
+    // ustawia plansze tak, aby do rozwiazania wystarczyl jeden ruch
     for (int i = 0; i < size * size - 1; i++) {
         matrix[i] = i + 1;
     }

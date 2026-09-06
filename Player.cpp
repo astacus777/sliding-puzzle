@@ -5,16 +5,20 @@
 #include "Player.h"
 
 Player::Player(const std::string& nick) {
+    // Przypisanie nazwy gracza
     nickName = nick;
 }
 
 void Player::roundResult(int score) {
-    this -> totalPoints += score;
+    // Dodanie punktow zdobytych w zakonczonej rundzie
+    this->totalPoints += score;
 }
 
 std::string Player::getNickName() const {
-    return this -> nickName;
+    return this->nickName;
 }
+
 int Player::getTotalPoints() const {
-    return this -> totalPoints;
+    // Zwrocenie lacznej liczby punktow gracza
+    return this->totalPoints;
 }
