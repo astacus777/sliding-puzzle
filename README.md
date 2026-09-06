@@ -8,6 +8,8 @@ Realizacja: rok akademicki **2025/2026**, półsemestr: **3**
 Przemysław Marcinkowski  
 Numer albumu: **347314**
 
+**Repozytorium GitHub:**  
+https://github.com/astacus777/sliding-puzzle
 
 ## Wybrany temat
 
